@@ -1,0 +1,39 @@
+%h1= t 'shop.cart.title'
+%table.table.table-striped
+  %thead
+    %tr
+      %td= Product.human_attribute_name :image
+      %td= Product.human_attribute_name :title
+      %td= Product.human_attribute_name :price
+      %td= t 'shop.cart.qty'
+      %td= t 'shop.cart.summ'
+  %tbody
+    - unless @items.blank?
+      - @items.each do |key, item|
+        %tr
+          %td= image_tag item['product'].image.url(:thumb)
+          %td= item['product'].title
+          %td= number_to_currency item['product'].price
+          %td= item['qty']
+          %td= number_to_currency item['product'].price * item['qty']
+    - else
+      %tr
+        %td.text-center{colspan: 5}= t 'shop.cart.empty_cart'
+
+
+- unless @items.blank?
+  %span.pull-right
+    %b.cart-total= t 'shop.cart.all_summ', summ_price: number_to_currency(@summ_price)
+    - if user_signed_in?
+      = form_for :order,
+          url: url_for(controller: :orders, action: :new),
+          html: { class: 'cart-checkout-form' },
+          method: :get do |f|
+        = f.submit t('shop.cart.checkout'), class: 'btn btn-primary'
+    - else
+      %button.btn.btn-primary{ disabled: 'disabled' }= t 'shop.cart.checkout'
+      %br
+      %i.alert-danger= t 'shop.cart.checkout_auth_message'
+
+  = form_for :cart, url: url_for(controller: :cart, action: :clean) do |f|
+    = f.submit t('shop.cart.clean'), class: 'btn btn-primary'

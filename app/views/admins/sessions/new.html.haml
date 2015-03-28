@@ -1,0 +1,22 @@
+%div.container
+  %div.row
+    %div.col-sm-12.col-md-4.col-md-offset-4
+      %h1= t 'admin.authorization_form.title'
+
+      - flash.each do |name, msg|
+        - if msg.is_a?(String)
+          %div{:class => flash_class(name)}= msg
+
+      = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+        %div.form-group
+          = f.label :email
+          %br
+          = f.email_field :email, autofocus: true, class: 'form-control'
+
+        %div.form-group
+          = f.label :password
+          %br
+          = f.password_field :password, class: 'form-control', autocomplete: 'off'
+
+        %div.form-group
+          = f.submit t('admin.authorization_form.button'), class: 'btn btn-def btn-block'

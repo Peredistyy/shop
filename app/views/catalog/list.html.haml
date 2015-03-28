@@ -1,0 +1,12 @@
+- @products.each do |item|
+  %div.panel.panel-primary.product-item
+    %table.table
+      %tr
+        %td{width: '30%'}= image_tag item.image.url(:medium)
+        %td{width: '15%'}
+          %b= item.title
+        %td{width: '25%'}= item.description
+        %td{width: '15%'}= number_to_currency item.price
+        %td{width: '15%'}
+          = form_for :product, url: url_for(controller: :cart, action: :add_item, product_id: item.id) do |f|
+            = f.submit t('shop.buy_button'), class: 'btn btn-primary'

@@ -1,0 +1,65 @@
+en:
+  shop:
+    title: 'Shop'
+    buy_button: 'Buy'
+    sign_in_button: 'Sing In'
+    sign_up_button: 'Sing Up'
+    sign_out_button: 'Sing Out'
+    sign_up_window:
+      title: 'Sing Up'
+    sign_in_window:
+      title: 'Sing In'
+      message:
+        failed: 'Login failed.'
+    close_button: 'Close'
+    cart:
+      title: 'Cart'
+      in_cart: 'In cart %{qty} products'
+      empty_cart: 'No items'
+      qty: 'Quantity'
+      summ: 'Sum'
+      all_summ: 'Total: %{summ_price}'
+      checkout: 'Checkout'
+      clean: 'Clean'
+      checkout_auth_message: 'Log in to place your order.'
+    order:
+      create_button: 'Create order'
+      all_summ: 'Total: %{summ_price}'
+      my_orders: 'My Orders'
+      products: 'Products'
+      summ: 'Order sum'
+      item:
+        qty: 'Quantity'
+        summ: 'Sum'
+      no_items: 'No items'
+      status:
+        pending: 'Pending'
+        on_road: 'On the road'
+        closed: 'Closed'
+        locked: 'Locked'
+    message:
+      success_add_to_cart: 'Product %{product_name} success added to cart.'
+  admin:
+    main_title: 'Admin Panel'
+    logout_button: 'Logout'
+    authorization_form:
+      title: 'Admin authorization'
+      button: 'Log In'
+    message:
+      password_recovery_disable: 'Password recovery are not open.'
+      registrations_disable: 'Registrations are not open.'
+    crud:
+      edit: 'Edit'
+      save: 'Save'
+      back: 'Back'
+      create_new_item: 'Create new item'
+      delete: 'Delete'
+      no_items: 'No items'
+      remove_confirm: 'Remove %{model_name}?'
+      read_more: 'Read more'
+    order:
+      products: 'Products'
+      summ: 'Sum'
+      item:
+        qty: 'Quantity'
+        summ: 'Sum'

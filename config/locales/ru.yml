@@ -1,0 +1,110 @@
+ru:
+  activerecord:
+    models:
+      product:
+        one: 'Товар'
+        other: 'Товары'
+      order:
+        one: 'Заказ'
+        other: 'Заказы'
+    attributes:
+      product:
+        title: 'Название'
+        description: 'Описание'
+        image: 'Изображение'
+        price: 'Цена'
+      user:
+        email: 'Почтовый ящик'
+        password: 'Пароль'
+        password_confirmation: 'Пароль еще раз'
+      order:
+        contact_info: 'Контактная информация'
+        status: 'Статус'
+        created_at: 'Дата создания'
+    errors:
+      models:
+        product:
+          attributes:
+            title:
+              blank: 'обязательно для заполнения'
+              too_short: 'слишком короткое'
+            price:
+              greater_than: 'меньше допустимой'
+        user:
+          attributes:
+            email:
+              blank: 'обязательно для заполнения'
+              taken: 'пользователь с таким почтовым ящиком уже есть в системе'
+            password:
+              blank: 'обязательно для заполнения'
+              too_short: 'слишком короткий'
+            password_confirmation:
+              confirmation: 'не совпадает с полем Пароль'
+        order:
+          attributes:
+            contact_info:
+              blank: 'обязательно для заполнения'
+  shop:
+    title: 'Магазин'
+    buy_button: 'Купить'
+    sign_in_button: 'Вход'
+    sign_out_button: 'Выход'
+    sign_up_button: 'Регистрация'
+    sign_up_window:
+      title: 'Регистрация'
+    sign_in_window:
+      title: 'Вход'
+      message:
+        failed: 'Login failed.'
+    close_button: 'Закрыть'
+    cart:
+      title: 'Корзина'
+      in_cart: 'В корзине %{qty} товаров'
+      empty_cart: 'Нет записаей'
+      qty: 'Количество'
+      summ: 'Сумма'
+      all_summ: 'Общая сумма: %{summ_price}'
+      checkout: 'Оформить заказ'
+      clean: 'Очистить'
+      checkout_auth_message: 'Авторизуйтесь для того чтобы оформить заказ.'
+    order:
+      create_button: 'Создать заказ'
+      all_summ: 'Общая сумма: %{summ_price}'
+      my_orders: 'Мои заказы'
+      products: 'Товары'
+      summ: 'Сумма заказа'
+      item:
+        qty: 'Количество'
+        summ: 'Сумма'
+      no_items: 'Нет записаей'
+      status:
+        pending: 'Ожидает обработки менеджером'
+        on_road: 'В дороге'
+        closed: 'Закрыт'
+        locked: 'Заблокирован'
+    message:
+      success_add_to_cart: 'Товар %{product_name} добавлен в корзину.'
+  admin:
+    main_title: 'Панель администратора'
+    logout_button: 'Выход'
+    authorization_form:
+      title: 'Вход администратора'
+      button: 'Вход'
+    message:
+      password_recovery_disable: 'Восстановление пароля запрещено.'
+      registrations_disable: 'Решистрация запрещена.'
+    crud:
+      edit: 'Изменить'
+      save: 'Сохранить'
+      back: 'Назад'
+      create_new_item: 'Создать новую запись'
+      delete: 'Удалить'
+      no_items: 'Нет записаей'
+      remove_confirm: 'Удалить %{model_name}?'
+      read_more: 'Подробнее'
+    order:
+      products: 'Товары'
+      summ: 'Сумма заказа'
+      item:
+        qty: 'Количество'
+        summ: 'Сумма'

@@ -1,0 +1,33 @@
+%div{ class: 'modal fade', id: 'signUp', tabindex: '-1', role: 'dialog', 'aria-hidden' => 'true' }
+  %div.modal-dialog
+    %div.modal-content
+      = form_for(user_resource,
+          url: registration_path(user_resource_name),
+          html: { id: 'sign_up_user' },
+          format: :json, remote: true) do |f|
+
+        %div.modal-header
+          %button{ type: 'button', class: 'close', 'data-dismiss' => 'modal', 'aria-label' => 'Close' }
+            %span{ 'aria-hidden' => 'true' } &times;
+          %h4{ class: 'modal-title', id: 'myModalLabel' }= t 'shop.sign_up_window.title'
+        %div.modal-body
+
+          %div.error_messages
+
+          %div.form-group
+            = f.label :email
+            %br
+            = f.text_field :email, class: 'form-control'
+
+          %div.form-group
+            = f.label :password
+            %br
+            = f.password_field :password, class: 'form-control'
+
+          %div.form-group
+            = f.label :password_confirmation
+            %br
+            = f.password_field :password_confirmation, class: 'form-control'
+
+        %div.modal-footer
+          = f.submit t('shop.sign_up_button'), class: 'btn btn-primary'

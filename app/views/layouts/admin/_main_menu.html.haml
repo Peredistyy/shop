@@ -1,0 +1,10 @@
+%div.list-group
+  - links = [{ text: Product.model_name.human(count: 2),
+               path: admin_products_path,
+               class: controller_name == 'products' ? 'list-group-item active' : 'list-group-item' },
+             { text: Order.model_name.human(count: 2),
+               path: admin_orders_path,
+               class: controller_name == 'orders' ? 'list-group-item active' : 'list-group-item' }]
+
+  - links.each do |item|
+    = link_to item[:text], item[:path], class: item[:class]

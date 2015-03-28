@@ -1,0 +1,19 @@
+%html
+  %head>
+    %title= t 'shop.title'
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  %body
+    %div.row.shop-body
+      %div.col-sm-12
+        = render 'layouts/application/header'
+
+        %div.container
+          %div.row
+            - flash.each do |key, value|
+              %div{ class: flash_class(key) }= value
+
+        %div.container
+          %div.row
+            = yield

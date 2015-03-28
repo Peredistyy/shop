@@ -1,0 +1,21 @@
+%table.table.table-striped
+  %thead
+    %tr
+      %td= Order.human_attribute_name :created_at
+      %td= Order.human_attribute_name :contact_info
+      %td= Order.human_attribute_name :status
+      %td
+  %tbody
+    - unless @orders.blank?
+      - @orders.each do |order|
+        %tr
+          %td= order.created_at.strftime '%F %R'
+          %td= order.contact_info
+          %td
+            %b= t 'shop.order.status.' + order.status_name
+          %td= link_to t('admin.crud.read_more'), edit_admin_order_path(order)
+    - else
+      %tr
+        %td.text-center{colspan: 4}= t 'shop.order.no_items'
+
+= will_paginate @orders

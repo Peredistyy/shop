@@ -1,0 +1,16 @@
+%html
+  %head
+    %title= t 'admin.main_title'
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  %body
+    %div.row.admin-body
+      %div.col-sm-12
+        = render 'layouts/admin/header'
+        %div.container
+          %div.row
+            %div.col-xs-8.col-sm-2
+              = render 'layouts/admin/main_menu'
+            %div.col-xs-4.col-sm-10
+              = yield

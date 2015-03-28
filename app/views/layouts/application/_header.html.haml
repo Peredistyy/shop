@@ -1,0 +1,32 @@
+%div.container.header-block
+  %div.row
+    %div.col-md-6
+      %h1.main-title= link_to t('shop.title'), root_path
+    %div.col-md-6
+      %span.pull-right.logout-button
+
+        %div.locale
+          - I18n.available_locales.each do |local|
+            - if I18n.locale == local
+              = local.to_s.upcase
+            - else
+              = link_to local.to_s.upcase, locale: local
+
+        %div.cart
+          - if cart_size != 0
+            = link_to t('shop.cart.in_cart', qty: cart_size), url_for(controller: :cart, action: :index)
+          - else
+            = t('shop.cart.in_cart', qty: cart_size)
+
+        - if user_signed_in?
+          = link_to current_user.email, url_for(controller: :orders, action: :index)
+          |
+          = link_to t('shop.sign_out_button'), destroy_user_session_path, :method => :delete
+        - else
+          %div.auth
+            %button{ type: 'button', class: 'btn btn-primary', 'data-toggle' => 'modal', 'data-target' => '#signIn' }= t 'shop.sign_in_button'
+            |
+            %button{ type: 'button', class: 'btn btn-primary', 'data-toggle' => 'modal', 'data-target' => '#signUp' }= t 'shop.sign_up_button'
+
+= render 'layouts/application/sign_in'
+= render 'layouts/application/sign_up'

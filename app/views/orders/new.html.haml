@@ -1,0 +1,39 @@
+%div.container
+  %div.row
+    %div.col-sm-12.col-md-6.col-md-offset-0
+
+      - if @order.errors.any?
+        - @order.errors.full_messages.each do |msg|
+          %div.alert.alert-warning= msg
+
+      %table.table.table-striped
+        %thead
+          %tr
+            %td= Product.human_attribute_name :title
+            %td= Product.human_attribute_name :price
+            %td= t 'shop.cart.qty'
+            %td= t 'shop.cart.summ'
+        %tbody
+          - unless @cart.items.blank?
+            - @cart.items.each do |key, item|
+              %tr
+                %td= item['product'].title
+                %td= number_to_currency item['product'].price
+                %td= item['qty']
+                %td= number_to_currency item['product'].price * item['qty']
+          - else
+            %tr
+              %td.text-center{colspan: 5}= t 'shop.cart.empty_cart'
+
+      %span.pull-right
+        %b= t 'shop.order.all_summ', summ_price: number_to_currency(@cart.summ_price)
+
+      = form_for :order, url: orders_path do |f|
+
+        %div.form-group
+          = f.label :contact_info
+          %br
+          = f.text_area :contact_info, class: 'form-control'
+
+        %div.form-group
+          = f.submit t('shop.order.create_button'), class: 'btn btn-primary'

@@ -1,0 +1,57 @@
+%div.container
+  %div.row
+    %div.col-sm-12.col-md-4.col-md-offset-0
+
+      - if @order.errors.any?
+        - @order.errors.full_messages.each do |msg|
+          %div.alert.alert-warning= msg
+
+      = form_for :order, url: admin_order_path(@order), method: :patch do |f|
+
+        %div.form-group
+          = f.label :created_at
+          %br
+          = f.text_field :created_at, class: 'form-control', disabled: true, value: @order.created_at.strftime('%F %R')
+
+        %div.form-group
+          = f.label t('admin.order.products')
+          %br
+          %table.table.table-striped
+            %thead
+              %tr
+                %td= Product.human_attribute_name :title
+                %td= Product.human_attribute_name :price
+                %td= t 'admin.order.item.qty'
+                %td= t 'admin.order.item.summ'
+            %tbody
+              - order_summ = 0
+              - @order.order_items.each do |item|
+                - order_summ += item.price * item.qty
+                %tr
+                  %td= item.title
+                  %td= number_to_currency item.price
+                  %td= item.qty
+                  %td= number_to_currency item.price * item.qty
+
+        %div.form-group
+          = f.label t 'admin.order.summ'
+          %br
+          %b= number_to_currency order_summ
+
+        %div.form-group
+          = f.label :contact_info
+          %br
+          = f.text_area :contact_info, class: 'form-control', disabled: true
+
+        %div.form-group
+          = f.label :status
+          %br
+          = f.select :status, class: 'form-control' do
+            - Order::STATUSES.each do |value, status_name|
+              = content_tag :option, t('shop.order.status.' + status_name), value: value
+
+
+        %div.form-group
+          = f.submit t('admin.crud.save'), class: 'btn btn-primary'
+
+= link_to t('admin.crud.back'), admin_orders_url

@@ -1,0 +1,30 @@
+%span.pull-right
+  = link_to t('admin.crud.create_new_item'), new_admin_product_path
+%table.table.table-striped
+  %thead
+    %tr
+      %td #
+      %td= Product.human_attribute_name :title
+      %td= Product.human_attribute_name :description
+      %td= Product.human_attribute_name :image
+      %td= Product.human_attribute_name :price
+      %td
+      %td
+  %tbody
+    - unless @items.blank?
+      - @items.each do |item|
+        %tr
+          %td= item.id
+          %td= item.title
+          %td= item.description
+          %td= image_tag item.image.url(:thumb)
+          %td= number_to_currency item.price
+          %td
+            = link_to t('admin.crud.edit'), edit_admin_product_path(item)
+          %td
+            = link_to t('admin.crud.delete'), admin_product_path(item), method: :delete, data: { confirm: t('admin.crud.remove_confirm', model_name: item.title) }
+    - else
+      %tr
+        %td.text-center{colspan: 6}= t 'admin.crud.no_items'
+
+= will_paginate @items

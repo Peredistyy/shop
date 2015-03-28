@@ -1,0 +1,40 @@
+%h1= t 'shop.order.my_orders'
+%table.table.table-striped
+  %thead
+    %tr
+      %td= Order.human_attribute_name :created_at
+      %td= Order.human_attribute_name :contact_info
+      %td= t 'shop.order.products'
+      %td= t 'shop.order.summ'
+      %td= Order.human_attribute_name :status
+  %tbody
+    - unless @orders.blank?
+      - @orders.each do |order|
+        %tr
+          %td= order.created_at.strftime '%F %R'
+          %td= order.contact_info
+          %td
+            %table.table.table-striped
+              %thead
+                %tr
+                  %td= Product.human_attribute_name :title
+                  %td= Product.human_attribute_name :price
+                  %td= t 'shop.order.item.qty'
+                  %td= t 'shop.order.item.summ'
+              %tbody
+                - order_summ = 0
+                - order.order_items.each do |item|
+                  - order_summ += item.price * item.qty
+                  %tr
+                    %td= item.title
+                    %td= number_to_currency item.price
+                    %td= item.qty
+                    %td= number_to_currency item.price * item.qty
+          %td= number_to_currency order_summ
+          %td
+            %b= t 'shop.order.status.' + order.status_name
+    - else
+      %tr
+        %td.text-center{colspan: 4}= t 'shop.order.no_items'
+
+= will_paginate @orders
